@@ -1,0 +1,82 @@
+.header {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  background: transparent;
+  transition: all ease 0.5s;
+}
+
+.preto {
+  background-color: #141414;
+}
+
+.headerLeft,
+.headerRight {
+  display: flex;
+  align-items: center;
+}
+
+.headerLogo {
+  height: 30px;
+  margin-right: 25px;
+}
+
+.logo {
+  font-size: 30px;
+  font-weight: bold;
+  color: #e50914;
+  font-family: "Arial Black", sans-serif;
+  letter-spacing: -1px;
+}
+
+.mainNav {
+  display: flex;
+  gap: 20px;
+}
+
+.mainNav a {
+  color: #e5e5e5;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s;
+}
+
+.mainNav a:hover {
+  color: #b3b3b3;
+}
+
+.headerIcones {
+  display: flex;
+  align-items: center;
+  margin-right: 25px;
+}
+
+.icon {
+  color: white;
+  font-size: 20px;
+  margin-left: 22px;
+  cursor: pointer;
+}
+
+.headerUsuario {
+  height: 35px;
+}
+
+.headerUsuario img {
+  height: 100%;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+@media (max-width: 800px) {
+  .mainNav {
+    display: none;
+  }
+}

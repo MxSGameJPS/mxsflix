@@ -1,0 +1,116 @@
+.destaque {
+  height: 80vh;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.vertical {
+  width: inherit;
+  height: inherit;
+  background: linear-gradient(to top, #111 10%, transparent 90%);
+}
+
+.horizontal {
+  width: inherit;
+  height: inherit;
+  background: linear-gradient(to right, #111 30%, transparent 70%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 30px;
+  padding-bottom: 150px;
+  padding-top: 70px;
+}
+
+.nome {
+  font-size: 60px;
+  font-weight: bold;
+  max-width: 50%;
+  margin-bottom: 15px;
+}
+
+.info {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.pontos {
+  color: #46d369;
+}
+
+.ano,
+.duracao {
+  display: inline-block;
+}
+
+.descricao {
+  font-size: 20px;
+  color: #999;
+  max-width: 40%;
+  margin-bottom: 20px;
+}
+
+.botoes {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.assistir,
+.maisInfo {
+  display: inline-block;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 12px 25px;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-right: 10px;
+  opacity: 1;
+  transition: all ease 0.2s;
+}
+
+.assistir {
+  background-color: #fff;
+  color: #000;
+}
+
+.maisInfo {
+  background-color: #333;
+  color: #fff;
+}
+
+.assistir:hover,
+.maisInfo:hover {
+  opacity: 0.7;
+}
+
+.generos {
+  margin-top: 15px;
+  font-size: 18px;
+  color: #999;
+}
+
+@media (max-width: 760px) {
+  .nome {
+    font-size: 40px;
+    max-width: 100%;
+  }
+
+  .info {
+    font-size: 16px;
+  }
+
+  .descricao {
+    font-size: 16px;
+    max-width: 100%;
+  }
+
+  .botoes a {
+    font-size: 16px;
+  }
+}

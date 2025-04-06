@@ -1,0 +1,27 @@
+.footer {
+  margin: 50px 0;
+  text-align: center;
+  color: #999;
+  padding: 0 20px;
+}
+
+.footer p {
+  margin-bottom: 10px;
+}
+
+.links {
+  margin-top: 15px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.links a {
+  color: #999;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.links a:hover {
+  color: #e50914;
+}

@@ -1,0 +1,77 @@
+.filmeRow {
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.filmeRow h2 {
+  margin: 0px 0px 10px 30px;
+}
+
+.listaArea {
+  overflow-x: hidden;
+  padding-left: 30px;
+}
+
+.lista {
+  transition: all ease 0.5s;
+  display: flex;
+}
+
+.item {
+  display: inline-block;
+  width: 150px;
+  cursor: pointer;
+}
+
+.item img {
+  width: 100%;
+  transform: scale(0.9);
+  transition: all ease 0.3s;
+}
+
+.item img:hover {
+  transform: scale(1);
+}
+
+.navegacaoEsquerda,
+.navegacaoDireita {
+  position: absolute;
+  width: 40px;
+  height: 225px;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0;
+  transition: all ease 0.5s;
+}
+
+.filmeRow:hover .navegacaoEsquerda,
+.filmeRow:hover .navegacaoDireita {
+  opacity: 1;
+}
+
+.navegacaoEsquerda {
+  left: 0;
+}
+
+.navegacaoDireita {
+  right: 0;
+}
+
+.navegacaoEsquerda span,
+.navegacaoDireita span {
+  font-size: 50px;
+  color: #fff;
+}
+
+@media (max-width: 760px) {
+  .navegacaoEsquerda,
+  .navegacaoDireita {
+    opacity: 1;
+    height: 140px;
+  }
+}

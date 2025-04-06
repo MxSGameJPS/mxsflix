@@ -1,0 +1,190 @@
+.playerContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #000;
+  z-index: 1000;
+}
+
+.playerBackground {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.playerOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.controls {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  opacity: 1;
+  transition: opacity 0.3s;
+  z-index: 10;
+}
+
+.topControls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.backButton {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  gap: 8px;
+  padding: 8px 16px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.backButton:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.movieTitle {
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+  margin-right: 20px;
+}
+
+.centerControls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.playButton {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: none;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #fff;
+  transition: background-color 0.3s;
+}
+
+.playButton:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.bottomControls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.progressContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+}
+
+.progressBar {
+  width: 100%;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  position: relative;
+}
+
+.progressFill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: #e50914;
+  border-radius: 2px;
+}
+
+.timeDisplay {
+  display: flex;
+  color: #fff;
+  font-size: 14px;
+  justify-content: space-between;
+}
+
+.rightControls {
+  display: flex;
+  gap: 16px;
+}
+
+.controlButton {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.controlButton:hover {
+  opacity: 0.8;
+}
+
+.messageOverlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  text-align: center;
+  border-radius: 8px;
+  max-width: 80%;
+  z-index: 5;
+}
+
+.messageOverlay p {
+  margin: 10px 0;
+}
+
+@media (max-width: 768px) {
+  .movieTitle {
+    display: none;
+  }
+
+  .controls {
+    padding: 10px;
+  }
+
+  .playButton {
+    width: 50px;
+    height: 50px;
+  }
+}
