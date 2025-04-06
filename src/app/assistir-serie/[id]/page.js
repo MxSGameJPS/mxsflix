@@ -5,30 +5,30 @@ import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa";
 import styles from "./page.module.css";
 
-export default function AssistirFilme({ params }) {
-  const [filme, setFilme] = useState(null);
+export default function AssistirSerie({ params }) {
+  const [serie, setSerie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [trailerKey, setTrailerKey] = useState(null);
   const [visible, setVisible] = useState(false);
-  const [filmeId, setFilmeId] = useState(null);
+  const [serieId, setSerieId] = useState(null);
 
   useEffect(() => {
-    // Extrair o ID do filme quando os parâmetros estiverem disponíveis
+    // Extrair o ID da série quando os parâmetros estiverem disponíveis
     if (params && params.id) {
-      setFilmeId(params.id);
+      setSerieId(params.id);
     }
   }, [params]);
 
   useEffect(() => {
     // Só executar a busca quando tivermos um ID válido
-    if (!filmeId) return;
+    if (!serieId) return;
 
-    const fetchFilmeData = async () => {
+    const fetchSerieData = async () => {
       try {
         setLoading(true);
         const response = await fetch(
-          `https://api.themoviedb.org/3/movie/${filmeId}?append_to_response=videos&language=pt-BR`,
+          `https://api.themoviedb.org/3/tv/${serieId}?append_to_response=videos&language=pt-BR`,
           {
             headers: {
               Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_API_TOKEN}`,
@@ -38,11 +38,11 @@ export default function AssistirFilme({ params }) {
         );
 
         if (!response.ok) {
-          throw new Error("Não foi possível obter os dados do filme");
+          throw new Error("Não foi possível obter os dados da série");
         }
 
         const data = await response.json();
-        setFilme(data);
+        setSerie(data);
 
         // Procurar o trailer
         if (
@@ -72,14 +72,14 @@ export default function AssistirFilme({ params }) {
           setVisible(true);
         }, 100);
       } catch (err) {
-        console.error("Erro ao buscar dados do filme:", err);
+        console.error("Erro ao buscar dados da série:", err);
         setError(err.message);
         setLoading(false);
       }
     };
 
-    fetchFilmeData();
-  }, [filmeId]);
+    fetchSerieData();
+  }, [serieId]);
 
   if (loading) {
     return (
@@ -89,12 +89,12 @@ export default function AssistirFilme({ params }) {
     );
   }
 
-  if (error || !filme) {
+  if (error || !serie) {
     return (
       <div className={`${styles.playerContainer} fadeIn`}>
         <div className={`${styles.errorMessage} slideInLeft`}>
           <h2>Erro ao carregar o vídeo</h2>
-          <p>{error || "Não foi possível carregar este filme"}</p>
+          <p>{error || "Não foi possível carregar esta série"}</p>
           <Link href="/" className={`${styles.backButton} fadeIn delay-300`}>
             <FaArrowLeft /> <span>Voltar para a página inicial</span>
           </Link>
@@ -111,14 +111,14 @@ export default function AssistirFilme({ params }) {
             width="100%"
             height="100%"
             src={`https://www.youtube.com/embed/${trailerKey}?autoplay=1&controls=1`}
-            title={`${filme.title} - Trailer`}
+            title={`${serie.name} - Trailer`}
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           ></iframe>
 
           <Link
-            href={`/info/${filme.id}`}
+            href={`/info-serie/${serie.id}`}
             className={`${styles.backButton} ${
               visible ? "slideInLeft delay-300" : ""
             }`}
@@ -130,7 +130,7 @@ export default function AssistirFilme({ params }) {
         <div
           className={`${styles.playerBackground} ${visible ? "fadeIn" : ""}`}
           style={{
-            backgroundImage: `url(https://image.tmdb.org/t/p/original${filme.backdrop_path})`,
+            backgroundImage: `url(https://image.tmdb.org/t/p/original${serie.backdrop_path})`,
           }}
         >
           <div className={styles.playerOverlay}>
@@ -140,18 +140,18 @@ export default function AssistirFilme({ params }) {
               }`}
             >
               <h2 className={visible ? "fadeIn delay-200" : ""}>
-                {filme.title}
+                {serie.name}
               </h2>
               <p className={visible ? "slideInLeft delay-300" : ""}>
-                Nenhum trailer disponível para este filme.
+                Nenhum trailer disponível para esta série.
               </p>
               <Link
-                href={`/info/${filme.id}`}
+                href={`/info-serie/${serie.id}`}
                 className={`${styles.backButton} ${
                   visible ? "fadeIn delay-400" : ""
                 }`}
               >
-                <FaArrowLeft /> <span>Voltar para informações do filme</span>
+                <FaArrowLeft /> <span>Voltar para informações da série</span>
               </Link>
             </div>
           </div>

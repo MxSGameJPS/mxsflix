@@ -4,7 +4,7 @@ import { FaExclamationTriangle } from "react-icons/fa";
 import Link from "next/link";
 import styles from "./ErrorMessage.module.css";
 
-export default function ErrorMessage({ message, retry }) {
+export function ErrorMessage({ message, retry }) {
   return (
     <div className={styles.errorContainer}>
       <div className={styles.errorContent}>
@@ -30,3 +30,5 @@ export default function ErrorMessage({ message, retry }) {
     </div>
   );
 }
+
+export default ErrorMessage;

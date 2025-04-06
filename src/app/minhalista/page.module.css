@@ -1,0 +1,204 @@
+.container {
+  min-height: 100vh;
+  background-color: #111;
+  color: #fff;
+  padding-top: 70px;
+}
+
+.pageHeader {
+  display: flex;
+  flex-direction: column;
+  padding: 50px 40px 20px;
+  max-width: 800px;
+}
+
+.pageHeader h1 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.pageHeader p {
+  font-size: 1rem;
+  color: #aaa;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.infoBox {
+  margin: 0 40px 30px;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  display: flex;
+  align-items: flex-start;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.infoIcon {
+  font-size: 2rem;
+  margin-right: 15px;
+  padding-top: 5px;
+}
+
+.infoContent h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #e50914;
+}
+
+.infoContent p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #ddd;
+}
+
+.listaVazia {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  padding: 20px;
+}
+
+.mensagemVazia {
+  text-align: center;
+  max-width: 500px;
+}
+
+.mensagemVazia h2 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  color: #aaa;
+}
+
+.mensagemVazia p {
+  color: #777;
+  margin-bottom: 25px;
+}
+
+.botaoExplorar {
+  display: inline-block;
+  background-color: #e50914;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 4px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.botaoExplorar:hover {
+  background-color: #f40612;
+  transform: scale(1.05);
+}
+
+.listaGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 25px;
+  padding: 0 40px 50px;
+}
+
+.itemCard {
+  position: relative;
+  transition: transform 0.3s ease;
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: #1a1a1a;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.itemCard:hover {
+  transform: translateY(-5px);
+}
+
+.itemPoster {
+  position: relative;
+  overflow: hidden;
+}
+
+.itemPoster img {
+  width: 100%;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.itemPoster:hover img {
+  transform: scale(1.05);
+}
+
+.botaoRemover {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(229, 9, 20, 0.8);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.itemPoster:hover .botaoRemover {
+  opacity: 1;
+}
+
+.itemInfo {
+  padding: 15px;
+}
+
+.itemInfo h3 {
+  font-size: 1rem;
+  margin-bottom: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.itemTipo {
+  display: inline-block;
+  font-size: 0.8rem;
+  padding: 3px 8px;
+  background-color: #333;
+  border-radius: 3px;
+  color: #aaa;
+}
+
+@media (max-width: 768px) {
+  .pageHeader {
+    padding: 40px 20px 10px;
+  }
+
+  .infoBox {
+    margin: 0 20px 20px;
+    flex-direction: column;
+  }
+
+  .infoIcon {
+    margin-bottom: 10px;
+  }
+
+  .listaGrid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 15px;
+    padding: 0 20px 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pageHeader h1 {
+    font-size: 1.8rem;
+  }
+
+  .listaGrid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+
+  .itemInfo h3 {
+    font-size: 0.9rem;
+  }
+}

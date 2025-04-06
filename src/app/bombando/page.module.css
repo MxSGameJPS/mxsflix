@@ -1,0 +1,55 @@
+.container {
+  min-height: 100vh;
+  background-color: #111;
+  color: #fff;
+  padding-top: 70px;
+}
+
+.pageHeader {
+  display: flex;
+  flex-direction: column;
+  padding: 50px 40px 20px;
+  max-width: 800px;
+}
+
+.pageHeader h1 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.pageHeader p {
+  font-size: 1rem;
+  color: #aaa;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.listas {
+  padding: 0 40px;
+}
+
+/* Estilo responsivo */
+@media (max-width: 768px) {
+  .pageHeader {
+    padding: 40px 20px 10px;
+  }
+
+  .pageHeader h1 {
+    font-size: 2rem;
+  }
+
+  .listas {
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pageHeader h1 {
+    font-size: 1.8rem;
+  }
+
+  .pageHeader p {
+    font-size: 0.9rem;
+  }
+}

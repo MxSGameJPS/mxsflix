@@ -144,64 +144,6 @@
   transform: scale(1.1);
 }
 
-.bottomControls {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 20px;
-}
-
-.progressContainer {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  margin-right: 20px;
-}
-
-.progressBar {
-  width: 100%;
-  height: 4px;
-  background-color: rgba(255, 255, 255, 0.3);
-  border-radius: 2px;
-  margin-bottom: 8px;
-  cursor: pointer;
-  position: relative;
-}
-
-.progressFill {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  background-color: #e50914;
-  border-radius: 2px;
-}
-
-.timeDisplay {
-  display: flex;
-  color: #fff;
-  font-size: 14px;
-  justify-content: space-between;
-}
-
-.rightControls {
-  display: flex;
-  gap: 16px;
-}
-
-.controlButton {
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 20px;
-  cursor: pointer;
-  transition: opacity 0.3s;
-}
-
-.controlButton:hover {
-  opacity: 0.8;
-}
-
 .messageOverlay {
   position: absolute;
   top: 50%;
@@ -350,24 +292,24 @@
     font-size: 14px;
     padding: 8px 16px;
   }
-
+  
   .messageOverlay {
     padding: 20px;
   }
-
+  
   .messageOverlay h2 {
     font-size: 22px;
   }
-
+  
   .messageOverlay p {
     font-size: 16px;
   }
-
+  
   .errorMessage {
     padding: 25px;
   }
-
+  
   .errorMessage h2 {
     font-size: 22px;
   }
-}
+} 

@@ -1,70 +1,64 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import Loading from "@/components/Loading";
 import { ErrorMessage } from "@/components/ErrorMessage";
-import { getFilmeInfo, getFilmesSimilares } from "@/services/api-real";
+import { getSerieInfo } from "@/services/api-real";
 import styles from "./info.module.css";
-import FilmeRow from "@/components/FilmeRow";
 import { FaPlay, FaPlus, FaExternalLinkAlt, FaInfo } from "react-icons/fa";
+import Link from "next/link";
 
-export default function InfoFilme({ params }) {
-  const [filme, setFilme] = useState(null);
-  const [filmesSimilares, setFilmesSimilares] = useState([]);
+export default function InfoSerie({ params }) {
+  const [serie, setSerie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [adicionadoLista, setAdicionadoLista] = useState(false);
-  const filmeId = params?.id;
+  const serieId = params?.id;
 
   useEffect(() => {
     async function carregarDados() {
       try {
-        if (filmeId) {
-          const filmeData = await getFilmeInfo(filmeId);
-          setFilme(filmeData);
+        if (serieId) {
+          const serieData = await getSerieInfo(serieId);
+          setSerie(serieData);
 
-          const similaresData = await getFilmesSimilares(filmeId);
-          setFilmesSimilares(similaresData.results || []);
-
-          // Verificar se o filme já está na minha lista
+          // Verificar se a série já está na minha lista
           const minhaLista = JSON.parse(
             localStorage.getItem("minhaLista") || "[]"
           );
           const jaAdicionado = minhaLista.some(
-            (item) => item.id === parseInt(filmeId)
+            (item) => item.id === parseInt(serieId)
           );
           setAdicionadoLista(jaAdicionado);
         }
       } catch (err) {
-        console.error("Erro ao carregar informações do filme:", err);
-        setError("Não foi possível carregar as informações do filme.");
+        console.error("Erro ao carregar informações da série:", err);
+        setError("Não foi possível carregar as informações da série.");
       } finally {
         setLoading(false);
       }
     }
 
     carregarDados();
-  }, [filmeId]);
+  }, [serieId]);
 
   const adicionarMinhaLista = () => {
     try {
       // Obter a lista atual
       const minhaLista = JSON.parse(localStorage.getItem("minhaLista") || "[]");
 
-      // Verificar se o filme já está na lista
-      if (!minhaLista.some((item) => item.id === filme.id)) {
-        // Adicionar o filme à lista
-        const filmeParaAdicionar = {
-          id: filme.id,
-          title: filme.title,
-          poster_path: filme.poster_path,
-          tipo: "filme",
+      // Verificar se a série já está na lista
+      if (!minhaLista.some((item) => item.id === serie.id)) {
+        // Adicionar a série à lista
+        const serieParaAdicionar = {
+          id: serie.id,
+          name: serie.name,
+          poster_path: serie.poster_path,
+          tipo: "serie",
         };
 
-        const novaLista = [...minhaLista, filmeParaAdicionar];
+        const novaLista = [...minhaLista, serieParaAdicionar];
         localStorage.setItem("minhaLista", JSON.stringify(novaLista));
         setAdicionadoLista(true);
       }
@@ -78,8 +72,8 @@ export default function InfoFilme({ params }) {
       // Obter a lista atual
       const minhaLista = JSON.parse(localStorage.getItem("minhaLista") || "[]");
 
-      // Remover o filme da lista
-      const novaLista = minhaLista.filter((item) => item.id !== filme.id);
+      // Remover a série da lista
+      const novaLista = minhaLista.filter((item) => item.id !== serie.id);
       localStorage.setItem("minhaLista", JSON.stringify(novaLista));
       setAdicionadoLista(false);
     } catch (err) {
@@ -95,28 +89,20 @@ export default function InfoFilme({ params }) {
     return <ErrorMessage message={error} />;
   }
 
-  if (!filme) {
-    return <ErrorMessage message="Filme não encontrado." />;
+  if (!serie) {
+    return <ErrorMessage message="Série não encontrada." />;
   }
 
   // Construir URL para a imagem de fundo
   const backgroundStyle = {
-    backgroundImage: `url(https://image.tmdb.org/t/p/original${filme.backdrop_path})`,
+    backgroundImage: `url(https://image.tmdb.org/t/p/original${serie.backdrop_path})`,
   };
 
-  // Converter minutos para formato horas e minutos
-  const formatarDuracao = (minutos) => {
-    const horas = Math.floor(minutos / 60);
-    const min = minutos % 60;
-    return `${horas}h ${min}min`;
-  };
-
-  // Extrair informações dos diretores
-  const diretores =
-    filme.credits?.crew?.filter((pessoa) => pessoa.job === "Director") || [];
+  // Extrair informações dos criadores
+  const criadores = serie.created_by || [];
 
   // Obter trailer
-  const trailer = filme.videos?.results?.find(
+  const trailer = serie.videos?.results?.find(
     (video) => video.type === "Trailer" && video.site === "YouTube"
   );
 
@@ -128,22 +114,21 @@ export default function InfoFilme({ params }) {
         <div className={styles.bannerVertical}>
           <div className={styles.bannerHorizontal}>
             <div className={styles.infoContainer}>
-              <h1 className={styles.filmeTitulo}>{filme.title}</h1>
+              <h1 className={styles.filmeTitulo}>{serie.name}</h1>
 
               <div className={styles.filmeInfo}>
-                {filme.vote_average && (
+                {serie.vote_average && (
                   <span className={styles.filmePontos}>
-                    {Math.round(filme.vote_average * 10)}% relevante
+                    {Math.round(serie.vote_average * 10)}% relevante
                   </span>
                 )}
                 <span className={styles.filmeAno}>
-                  {filme.release_date?.substring(0, 4)}
+                  {serie.first_air_date?.substring(0, 4)}
                 </span>
-                {filme.runtime > 0 && (
-                  <span className={styles.filmeDuracao}>
-                    {formatarDuracao(filme.runtime)}
-                  </span>
-                )}
+                <span className={styles.filmeDuracao}>
+                  {serie.number_of_seasons} temporada
+                  {serie.number_of_seasons !== 1 ? "s" : ""}
+                </span>
               </div>
 
               <div className={styles.infoBox}>
@@ -152,14 +137,14 @@ export default function InfoFilme({ params }) {
                 </div>
                 <div className={styles.infoContent}>
                   <p>
-                    O MXSFlix é uma biblioteca de filmes para pesquisa de
+                    O MXSFlix é uma biblioteca de séries para pesquisa de
                     informações e não um serviço de streaming. Este site não
                     disponibiliza conteúdo para assistir.
                   </p>
                 </div>
               </div>
 
-              <p className={styles.filmeDescricao}>{filme.overview}</p>
+              <p className={styles.filmeDescricao}>{serie.overview}</p>
 
               <div className={styles.filmeBotoes}>
                 {trailer?.key ? (
@@ -173,7 +158,7 @@ export default function InfoFilme({ params }) {
                   </a>
                 ) : (
                   <Link
-                    href={`/assistir/${filme.id}`}
+                    href={`/assistir-serie/${serie.id}`}
                     className={styles.botaoAssistir}
                   >
                     <FaPlay /> Ver Trailer
@@ -199,27 +184,32 @@ export default function InfoFilme({ params }) {
 
               <div className={styles.filmeGeneros}>
                 <strong>Gêneros: </strong>
-                {filme.genres?.map((genero) => genero.name).join(", ")}
+                {serie.genres?.map((genero) => genero.name).join(", ")}
               </div>
 
-              {diretores.length > 0 && (
+              {criadores.length > 0 && (
                 <div className={styles.filmeDiretor}>
-                  <strong>Diretor: </strong>
-                  {diretores.map((diretor) => diretor.name).join(", ")}
+                  <strong>Criado por: </strong>
+                  {criadores.map((criador) => criador.name).join(", ")}
                 </div>
               )}
 
-              {filme.production_companies?.length > 0 && (
+              {serie.networks?.length > 0 && (
                 <div className={styles.filmeEstudio}>
-                  <strong>Estúdio: </strong>
-                  {filme.production_companies[0].name}
+                  <strong>Canal: </strong>
+                  {serie.networks[0].name}
                 </div>
               )}
 
-              {filme.homepage && (
+              <div className={styles.filmeStatus}>
+                <strong>Status: </strong>
+                {serie.status === "Ended" ? "Finalizada" : "Em andamento"}
+              </div>
+
+              {serie.homepage && (
                 <div className={styles.filmeLinks}>
                   <a
-                    href={filme.homepage}
+                    href={serie.homepage}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={styles.botaoLink}
@@ -232,16 +222,6 @@ export default function InfoFilme({ params }) {
           </div>
         </div>
       </div>
-
-      {filmesSimilares.length > 0 && (
-        <div className={styles.filmesSimiliares}>
-          <FilmeRow
-            titulo="Títulos Similares"
-            filmes={filmesSimilares}
-            tipo="filme"
-          />
-        </div>
-      )}
 
       <Footer />
     </div>

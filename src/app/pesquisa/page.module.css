@@ -1,0 +1,154 @@
+.container {
+  min-height: 100vh;
+  background-color: #111;
+  color: #fff;
+  padding-top: 70px;
+}
+
+.content {
+  padding: 50px 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.pesquisaHeader {
+  margin-bottom: 30px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.pesquisaHeader h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.pesquisaHeader h1 span {
+  color: #e50914;
+}
+
+.resultCount {
+  color: #aaa;
+  font-size: 1rem;
+}
+
+.resultadosContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.secaoResultados {
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.semResultados {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  text-align: center;
+  padding: 20px;
+  margin: 40px auto;
+  max-width: 600px;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.semResultadosIcon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  animation: pulse 2s infinite;
+}
+
+.semResultados h2 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  color: #e5e5e5;
+}
+
+.semResultados p {
+  color: #aaa;
+  font-size: 1rem;
+  line-height: 1.5;
+  max-width: 480px;
+}
+
+.infoBox {
+  margin: 40px 0 30px;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  display: flex;
+  align-items: flex-start;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.infoIcon {
+  font-size: 2rem;
+  margin-right: 15px;
+  padding-top: 5px;
+}
+
+.infoContent p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #ddd;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: 30px 20px;
+  }
+
+  .pesquisaHeader h1 {
+    font-size: 1.8rem;
+  }
+
+  .semResultados {
+    min-height: 250px;
+  }
+
+  .semResultadosIcon {
+    font-size: 3rem;
+  }
+
+  .semResultados h2 {
+    font-size: 1.5rem;
+  }
+
+  .infoBox {
+    flex-direction: column;
+  }
+
+  .infoIcon {
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pesquisaHeader h1 {
+    font-size: 1.5rem;
+  }
+
+  .semResultados h2 {
+    font-size: 1.3rem;
+  }
+
+  .semResultados p {
+    font-size: 0.9rem;
+  }
+}

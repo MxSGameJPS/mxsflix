@@ -36,21 +36,24 @@ export default function FilmeDestaque({ filme }) {
     .join(", ");
 
   return (
-    <section className={styles.destaque} style={fundoEstilo}>
+    <section
+      className={`${styles.destaque} highlight-fade`}
+      style={fundoEstilo}
+    >
       <div className={styles.vertical}>
         <div className={styles.horizontal}>
-          <div className={styles.nome}>{filme.title}</div>
-          <div className={styles.info}>
+          <div className={`${styles.nome} slideInLeft`}>{filme.title}</div>
+          <div className={`${styles.info} slideInLeft delay-200`}>
             <div className={styles.pontos}>
               {filme.vote_average.toFixed(1)} pontos
             </div>
             <div className={styles.ano}>{ano}</div>
             {duracao && <div className={styles.duracao}>{duracao}</div>}
           </div>
-          <div className={styles.descricao}>
+          <div className={`${styles.descricao} slideInLeft delay-300`}>
             {limitarDescricao(filme.overview, 200)}
           </div>
-          <div className={styles.botoes}>
+          <div className={`${styles.botoes} slideInLeft delay-400`}>
             <a href={`/assistir/${filme.id}`} className={styles.assistir}>
               ► Assistir
             </a>
@@ -59,7 +62,7 @@ export default function FilmeDestaque({ filme }) {
             </a>
           </div>
           {generos && (
-            <div className={styles.generos}>
+            <div className={`${styles.generos} slideInLeft delay-500`}>
               <strong>Gêneros:</strong> {generos}
             </div>
           )}
